@@ -1,0 +1,36 @@
+.AlertDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 3px solid rgb(157, 241, 157);
+  padding: 15px;
+  gap: 1em;
+
+}
+
+.Title {
+  color:rgb(226, 195, 166);
+  margin: 0;
+}
+
+.AlertBtn {
+  width: 30%;
+  height: 2.5rem;
+  padding: 5px;
+  font-size: 0.6em;
+  background-color: rgb(236, 171, 217);
+  cursor: pointer;
+}
+
+.App-link {
+  text-decoration: none;
+  color: rgb(72, 148, 211);
+  padding: 5px 10px;
+}
+
+.App-link:hover {
+  opacity: 0.6;
+  color: rgb(235, 109, 77);
+  transition: 0.4s ease-in-out;
+}
