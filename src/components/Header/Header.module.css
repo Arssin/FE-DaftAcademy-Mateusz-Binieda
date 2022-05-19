@@ -1,0 +1,9 @@
+.header {
+  min-height: 8vh;
+  background-color: var(--footerAndHeaderBg);
+  color: var(--fontColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8em;
+}

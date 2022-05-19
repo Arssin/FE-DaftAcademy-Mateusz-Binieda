@@ -1,40 +1,26 @@
 :root {
  --footerAndHeaderBg: rgb(34, 31, 31);
- --fontColorHeaderAndFooter: rgb(226, 195, 166);
+ --fontColor: rgb(226, 195, 166);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .App {
-  text-align: center;
-}
-
-.App-header {
-  min-height: 8vh;
-  background-color: var(--footerAndHeaderBg);
-  color: var(--fontColorHeaderAndFooter);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.8em;
-}
-
-.Body {
-  background-color: #282c34;
-  min-height: 87vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+}
+.Container {
+  background-color: #282c34;
+  min-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  gap: 40vh;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.Footer {
-  background-color: var(--footerAndHeaderBg);
-  min-height: 5vh;
-  color: var(--fontColorHeaderAndFooter);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 

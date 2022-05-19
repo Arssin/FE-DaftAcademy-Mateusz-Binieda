@@ -1,4 +1,4 @@
-import './ShowAlert.css'
+import styles from './ShowAlert.module.css'
 
 export const ShowAlert = () => {
 
@@ -7,11 +7,11 @@ export const ShowAlert = () => {
   }
 
   return (
-    <div className="AlertDiv">
-        <p className="Title">Task number 1</p>
-        <button onClick={handleHelloAlert} className="AlertBtn"> Show alert!</button>
+    <div className={styles.alertDiv}>
+        <div className={styles.title}>Task number 1</div>
+        <button onClick={handleHelloAlert} className={styles.alertBtn}> Show alert!</button>
         <a
-            className="App-link"
+            className={styles.appLink}
             href="https://github.com/Arssin/FE-DaftAcademy-Mateusz-Binieda"
             target="_blank"
             rel="noopener noreferrer"

@@ -1,22 +1,19 @@
 import './App.css';
 import {ShowAlert} from './components/ShowAlert/ShowAlert'
 import {InputForm} from './components/InputForm'
+import {Footer} from './components/Footer'
+import {Header} from './components/Header'
 
 function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-       DaftAcademy Project
-      </header>
-      <body className="Body">
-          <ShowAlert />
-          <InputForm />
-      </body>
-      <footer className="Footer">
-        Designed by Mateusz Binięda
-      </footer>
-
+      <Header />
+      <div className="Container">
+        <ShowAlert />
+        <InputForm  defaultValue={'Hello There'}/>
+      </div>
+      <Footer />
     </div>
   );
 }
