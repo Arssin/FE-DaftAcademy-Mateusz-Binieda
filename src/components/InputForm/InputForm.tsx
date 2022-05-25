@@ -1,4 +1,4 @@
-import styles from './InputForm.module.css';
+import styles from './InputForm.module.scss';
 import  {useState, useCallback, useEffect} from 'react'
 
 interface InputFormProps {

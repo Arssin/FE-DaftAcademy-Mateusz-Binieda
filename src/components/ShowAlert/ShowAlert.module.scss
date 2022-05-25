@@ -1,0 +1,35 @@
+.alertDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 3px solid rgb(198, 218, 198);
+  padding: 10px;
+  gap: 1em;
+  width: 80vw;
+  background-color: rgba(117, 58, 58, 0.2);
+  height: 25vh;
+  box-shadow: inset 0px 0px 28px 7px rgba(66, 68, 90, 1);
+
+
+  @media (min-width: 480px) {
+    width: 40vw;
+  }
+
+}
+
+.alertBtn {
+  width: 45%;
+  height: 3rem;
+  padding: 5px;
+  font-size: 0.8em;
+  background-color: rgb(240, 198, 227);
+  cursor: pointer;
+}
+
+
+.title {
+  color: var(--fontColor);
+  margin: 0;
+  font-size: 1.2em;
+}

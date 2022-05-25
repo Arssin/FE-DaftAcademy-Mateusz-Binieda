@@ -1,0 +1,71 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 3px solid rgb(120, 174, 190);
+  padding: 10px;
+  background-color: rgb(115, 139, 189);
+  width: 90vw;
+  min-height: 50vh;
+  gap: 1em;
+  margin: 1rem 0;
+  box-shadow: 8px 8px 28px 7px rgba(66, 68, 90, 1);
+
+  @media screen and (min-width: 480px){
+    width: 60vw;
+  }
+}
+
+
+.title {
+  color: var(--fontColor);
+  font-size: 1.2em;
+  margin-bottom: 2rem;
+}
+
+.label {
+  color: black;
+  font-size: 1em;
+  text-align: center;
+  padding: 10px;
+
+  @media screen and (min-width: 480px){
+    font-size: 0.9em;
+  }
+}
+
+.inputForm{
+  width: 90%;
+  height: 2rem;
+  background: rgb(143, 241, 237);
+  padding: 10px;
+  border-radius: 5px;
+
+}
+
+.inputForm:focus {
+  background-color: rgba(143, 241, 237,0.4)
+}
+
+.submitBtn {
+  height: 25px;
+  width: 100px;
+
+  @media screen and (min-width: 480px){
+    font-size: 1em;
+    height: 45px;
+    width: 150px;
+  }
+}
+
+.error {
+color: red;
+font-size: 0.8em;
+letter-spacing: 1px;
+text-align: center;
+}
+
+.errorSpan {
+height: 1.5rem;
+}
