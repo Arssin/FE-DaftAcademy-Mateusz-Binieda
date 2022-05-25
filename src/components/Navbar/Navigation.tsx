@@ -1,7 +1,7 @@
 
 import styles from './Navigation.module.scss';
 import { VscCircuitBoard } from "react-icons/vsc";
-import { NavLinks } from './NavLinks';
+import { NavLinks } from './NavLinks/NavLinks';
 
 export const Navigation = () => {
   return (

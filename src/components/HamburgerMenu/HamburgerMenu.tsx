@@ -8,13 +8,12 @@ interface HamburgerMenuProps {
 }
 
 export const HamburgerMenu = ({isOpen, onClick}: HamburgerMenuProps) => {
-  console.log(isOpen)
   return (
     <div onClick={onClick}>
         { isOpen ? (
-        <VscMenu className={styles.hamburger}/> )
+        <VscMenu className={styles.hamburger} aria-label='Open menu'/> )
           : (
-        <VscChromeClose className={styles.hamburger}/>)
+        <VscChromeClose className={styles.hamburger} aria-label='Close menu'/>)
           }
     </div>
 ) }
