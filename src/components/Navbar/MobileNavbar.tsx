@@ -2,7 +2,8 @@ import styles from './MobileNavbar.module.scss';
 import { VscCircuitBoard } from "react-icons/vsc";
 import { HamburgerMenu } from '../HamburgerMenu';
 import {useState} from 'react'
-import {NavLinksMobile} from './NavLinks/NavLinksMobile'
+import {NavLinks} from './NavLinks/NavLinks'
+import {Link} from 'react-router-dom'
 
 
 export function MobileNavbar() {
@@ -11,8 +12,8 @@ export function MobileNavbar() {
 
   return (
   <nav className={styles.navigation}>
-    <VscCircuitBoard className={styles.icon}/>
-      {!hamburgerOpen &&  (<NavLinksMobile />)} 
+    <Link to='/'><VscCircuitBoard className={styles.icon}/></Link>
+      {!hamburgerOpen &&  (<NavLinks/>)} 
     <HamburgerMenu isOpen={hamburgerOpen} onClick={toggleHamburger} />
   </nav>
   )
