@@ -1,5 +1,5 @@
 import styles from './HamburgerMenu.module.scss';
-import { VscMenu } from "react-icons/vsc";
+import { VscMenu, VscChromeClose } from "react-icons/vsc";
 import { MouseEventHandler } from 'react';
 
 interface HamburgerMenuProps {
@@ -13,7 +13,9 @@ export const HamburgerMenu = ({isOpen, onClick}: HamburgerMenuProps) => {
     <div onClick={onClick}>
         { isOpen ? (
         <VscMenu className={styles.hamburger}/> )
-          : ( 'x' )}
+          : (
+        <VscChromeClose className={styles.hamburger}/>)
+          }
     </div>
 ) }
 

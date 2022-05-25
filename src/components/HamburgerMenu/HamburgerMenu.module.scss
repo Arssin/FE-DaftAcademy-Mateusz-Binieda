@@ -1,3 +1,19 @@
 .hamburger{
-  // cursor: pointer;
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  animation: animate 1s ease;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

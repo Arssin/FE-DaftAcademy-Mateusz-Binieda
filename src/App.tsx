@@ -4,7 +4,6 @@ import {InputForm} from './components/InputForm'
 import {Footer} from './components/Footer'
 import {Navbar} from './components/Navbar'
 import {Homepage} from './components/Homepage'
-import {Header} from './components/Header'
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
