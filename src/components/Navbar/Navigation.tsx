@@ -4,11 +4,16 @@ import { VscCircuitBoard } from "react-icons/vsc";
 import { NavLinks } from './NavLinks/NavLinks';
 import {Link} from 'react-router-dom'
 
-export const Navigation = () => {
+interface NavProps {
+  toggleHamburger: () => void
+}
+
+
+export const Navigation = ({toggleHamburger}:NavProps) => {
   return (
     <nav className={styles.navigation}>
       <Link to='/'><VscCircuitBoard className={styles.icon}/> </Link>
-      <NavLinks />
+      <NavLinks toggleHamburger={toggleHamburger} />
     </nav>
   )
 }
