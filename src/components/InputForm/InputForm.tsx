@@ -19,7 +19,7 @@ const apiKey : string = (process.env.REACT_APP_AIRTABLE_API_KEY as string)
 const dataBase : string = (process.env.REACT_APP_AIRTABLE_API_DATABASE as string)
 
 
-const base  = new Airtable({apiKey: apiKey }).base(dataBase)
+const base  = new Airtable({apiKey: apiKey }).base('appIq0Ys3vXY5NgHH')
 
 
 export const  InputForm = ( props?: InputFormProps) => {
@@ -32,12 +32,9 @@ export const  InputForm = ( props?: InputFormProps) => {
   const formReadyToSubmit = (displayError || !inputValue)
 
 
-
-
-
 useEffect(() => {
 base('inputvalue').select({
-maxRecords: 4,
+  maxRecords: 50,
  view: "Grid view"
 }).eachPage(function page(records, fetchNextPage) {
   setApiValues(records)
@@ -99,14 +96,17 @@ maxRecords: 4,
   },[])
 
 
-console.log(apiValues)
+// console.log(apiValues)
 
-let changen = apiValues.map((obj: { fields: any; }) => 
-  {return obj.fields.inputvalue})
+// let changen = apiValues.map((obj: { fields: any; }) => 
+//   {return obj.fields.inputvalue})
 
-  console.log(changen)
+//   console.log(changen)
 
+//   let changens = apiValues.map((obj: { id: any; }) => 
+//   {return obj.id})
 
+//   console.log(changens)
 
 
   return (
@@ -121,8 +121,7 @@ let changen = apiValues.map((obj: { fields: any; }) =>
       <div>
         Records
         <ul> 
-          {apiValues.map(((obj: any) => { return <li>{obj.fields.inputvalue}</li>}))}
-          
+          {apiValues.slice(0).reverse().map(((obj: any) => { return <li key={obj.id}>{obj.fields.inputvalue}</li>}))}
         </ul>
       
       </div>
