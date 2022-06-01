@@ -19,7 +19,7 @@ const apiKey : string = (process.env.REACT_APP_AIRTABLE_API_KEY as string)
 const dataBase : string = (process.env.REACT_APP_AIRTABLE_API_DATABASE as string)
 
 
-const base  = new Airtable({apiKey: apiKey }).base('appIq0Ys3vXY5NgHH')
+const base  = new Airtable({apiKey: apiKey }).base(dataBase)
 
 
 export const  InputForm = ( props?: InputFormProps) => {
