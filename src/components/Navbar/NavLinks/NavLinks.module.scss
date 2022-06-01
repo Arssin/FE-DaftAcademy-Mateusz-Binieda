@@ -16,21 +16,25 @@
  &noMobile {
    display: flex;
    list-style: none;
-   gap: 2.5em;
-  
+   gap: 2em;
+   margin: 0 0.5rem 0 2rem;
  }
 }
 
   .list
    {
     display: flex;
+    align-items: center;
     justify-content: center;
     font-size: 1em;
+  
 
    
     @media screen and (min-width: 769px) {
       font-size: 1.2em;
-      margin-right: 1rem;
+      text-align: center;
+   
+
     }
 
     .anchorTag{

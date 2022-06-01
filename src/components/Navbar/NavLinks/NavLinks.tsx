@@ -34,6 +34,9 @@ export  function NavLinks({toggleHamburger}:NavProps) {
           <li  className={styles.list}>
               <Link onClick={toggleHamburger} to='/form' className={styles.anchorTag}>Homework Form</Link>
           </li>
+          <li  className={styles.list}>
+              <Link onClick={toggleHamburger} to='/rim' className={styles.anchorTag}>R&M Api</Link>
+          </li>
     </ul>
   )
 }
