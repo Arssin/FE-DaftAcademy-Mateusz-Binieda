@@ -5,8 +5,12 @@ import Airtable from 'airtable'
 
 
 
+
 interface InputFormProps {
   defaultValue?: string,
+  // apiValues?: ReactNode
+  // setApiValues?: Records<FieldSet>
+ 
 }
 
 const storageFormKey = 'inputValue';
@@ -15,31 +19,38 @@ const apiKey : string = (process.env.REACT_APP_AIRTABLE_API_KEY as string)
 const dataBase : string = (process.env.REACT_APP_AIRTABLE_API_DATABASE as string)
 
 
+const base  = new Airtable({apiKey: apiKey }).base(dataBase)
+
 
 export const  InputForm = ( props?: InputFormProps) => {
   const [displayError, setDisplayError] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>('')
   const [errorMsg, setErrorMsg] = useState<string>('')
+  const [apiValues, setApiValues] = useState<any[] | any>([]) 
+  const [updates, setUpdates] = useState([])
 
   const formReadyToSubmit = (displayError || !inputValue)
 
 
 
-const base  = new Airtable({apiKey: apiKey }).base(dataBase)
 
+
+useEffect(() => {
 base('inputvalue').select({
- maxRecords: 3,
+maxRecords: 4,
  view: "Grid view"
 }).eachPage(function page(records, fetchNextPage) {
-
- records.forEach(function (record) {
-   console.log('Retrived', record.get('inputvalue'));
+  setApiValues(records)
+  records.forEach(function (record) {
+    console.log('Retrived', record.get('inputvalue'));
  })
+
 
  fetchNextPage()
 }, function done(err) {
  if (err) {console.error(err); return}
 })
+},[])
 
 
 
@@ -67,8 +78,6 @@ base('inputvalue').select({
   }
 
 
-
-
   const handleSubmit = useCallback((e: React.MouseEvent<HTMLButtonElement> ) => {
     e.preventDefault()
     if(!formReadyToSubmit) {
@@ -90,17 +99,37 @@ base('inputvalue').select({
   },[])
 
 
+console.log(apiValues)
+
+let changen = apiValues.map((obj: { fields: any; }) => 
+  {return obj.fields.inputvalue})
+
+  console.log(changen)
+
+
+
+
   return (
-    <div className={styles.form}>
+    <div>
+      <div className={styles.form}>
         <label className={styles.title}>Task number 2</label>
         <label className={styles.label}>Write something between 3 and 20 letters and without special characters:</label>
         <input onInput={handleInput} value={inputValue}  className={styles.inputForm} />
         <div className={styles.errorSpan}>{displayError && <div className={styles.error}>{errorMsg}</div>} </div>
         <button onClick={handleSubmit} className={styles.submitBtn} disabled={formReadyToSubmit}>Submit</button>
-    </div>
-  
+      </div>
+      <div>
+        Records
+        <ul> 
+          {apiValues.map(((obj: any) => { return <li>{obj.fields.inputvalue}</li>}))}
+          
+        </ul>
+      
+      </div>
+   </div>
 
   )
 }
 
 export default InputForm
+
