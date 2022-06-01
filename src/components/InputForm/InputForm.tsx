@@ -1,11 +1,20 @@
 import styles from './InputForm.module.scss';
 import  {useState, useCallback, useEffect} from 'react'
+import Airtable from 'airtable'
+
+
+
 
 interface InputFormProps {
   defaultValue?: string,
 }
 
 const storageFormKey = 'inputValue';
+
+const apiKey : string = (process.env.REACT_APP_AIRTABLE_API_KEY as string)
+const dataBase : string = (process.env.REACT_APP_AIRTABLE_API_DATABASE as string)
+
+
 
 export const  InputForm = ( props?: InputFormProps) => {
   const [displayError, setDisplayError] = useState<boolean>(false)
@@ -14,7 +23,25 @@ export const  InputForm = ( props?: InputFormProps) => {
 
   const formReadyToSubmit = (displayError || !inputValue)
 
-  
+
+
+const base  = new Airtable({apiKey: apiKey }).base(dataBase)
+
+base('inputvalue').select({
+ maxRecords: 3,
+ view: "Grid view"
+}).eachPage(function page(records, fetchNextPage) {
+
+ records.forEach(function (record) {
+   console.log('Retrived', record.get('inputvalue'));
+ })
+
+ fetchNextPage()
+}, function done(err) {
+ if (err) {console.error(err); return}
+})
+
+
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement> ) => {
       const specialCharacters = /[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|]+/
@@ -71,7 +98,7 @@ export const  InputForm = ( props?: InputFormProps) => {
         <div className={styles.errorSpan}>{displayError && <div className={styles.error}>{errorMsg}</div>} </div>
         <button onClick={handleSubmit} className={styles.submitBtn} disabled={formReadyToSubmit}>Submit</button>
     </div>
-   
+  
 
   )
 }
