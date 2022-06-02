@@ -3,8 +3,6 @@ import  {useState, useCallback, useEffect} from 'react'
 import Airtable from 'airtable'
 
 
-// ADRESS_URL = https://api.airtable.com/v0/appIq0Ys3vXY5NgHH/inputvalue?api_key=keyIWvtHI6VuPFmzZ
-
 interface InputFormProps {
   defaultValue?: string,
 }
@@ -17,11 +15,6 @@ const dataBase : string = (process.env.REACT_APP_AIRTABLE_API_DATABASE as string
 
 const base  = new Airtable({apiKey: apiKey }).base(dataBase)
 const table = base('inputvalue')
-
-Airtable.configure({
-  endpointUrl: "https://api.airtable.com",
-  apiKey: apiKey
-})
 
 
 export const  InputForm = ( props?: InputFormProps) => {
@@ -84,7 +77,7 @@ base('inputvalue').select({
         'inputvalue': inputValue}
       )
      
-  },[formReadyToSubmit, inputValue])
+  },[apiValues, formReadyToSubmit, inputValue])
 
 
   useEffect(() => {
@@ -98,7 +91,7 @@ base('inputvalue').select({
       }
     }
     setInputValue(valueToSet)
-  },[])
+  },[props?.defaultValue])
 
   return (
     <div>
