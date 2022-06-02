@@ -3,14 +3,10 @@ import  {useState, useCallback, useEffect} from 'react'
 import Airtable from 'airtable'
 
 
-
-
+// ADRESS_URL = https://api.airtable.com/v0/appIq0Ys3vXY5NgHH/inputvalue?api_key=keyIWvtHI6VuPFmzZ
 
 interface InputFormProps {
   defaultValue?: string,
-  // apiValues?: ReactNode
-  // setApiValues?: Records<FieldSet>
- 
 }
 
 const storageFormKey = 'inputValue';
@@ -20,6 +16,12 @@ const dataBase : string = (process.env.REACT_APP_AIRTABLE_API_DATABASE as string
 
 
 const base  = new Airtable({apiKey: apiKey }).base(dataBase)
+const table = base('inputvalue')
+
+Airtable.configure({
+  endpointUrl: "https://api.airtable.com",
+  apiKey: apiKey
+})
 
 
 export const  InputForm = ( props?: InputFormProps) => {
@@ -27,21 +29,24 @@ export const  InputForm = ( props?: InputFormProps) => {
   const [inputValue, setInputValue] = useState<string>('')
   const [errorMsg, setErrorMsg] = useState<string>('')
   const [apiValues, setApiValues] = useState<any[] | any>([]) 
-  const [updates, setUpdates] = useState([])
+
+
+
+
 
   const formReadyToSubmit = (displayError || !inputValue)
 
 
 useEffect(() => {
+
 base('inputvalue').select({
-  maxRecords: 50,
+  maxRecords: 100,
  view: "Grid view"
 }).eachPage(function page(records, fetchNextPage) {
   setApiValues(records)
-  records.forEach(function (record) {
-    console.log('Retrived', record.get('inputvalue'));
- })
-
+//   records.forEach(function (record) {
+//     console.log('Retrived', record.get('inputvalue'));
+//  })
 
  fetchNextPage()
 }, function done(err) {
@@ -76,10 +81,17 @@ base('inputvalue').select({
 
 
   const handleSubmit = useCallback((e: React.MouseEvent<HTMLButtonElement> ) => {
+    const createRecord = async (fields: any) => {
+      const createdRecord = await table.create(fields)
+      console.log(createdRecord)
+    }
     e.preventDefault()
     if(!formReadyToSubmit) {
       localStorage.setItem(storageFormKey, inputValue)}
-  }, [inputValue])
+      createRecord({
+        'inputvalue': inputValue}
+      )
+  },[formReadyToSubmit, inputValue])
 
 
   useEffect(() => {
@@ -96,19 +108,6 @@ base('inputvalue').select({
   },[])
 
 
-// console.log(apiValues)
-
-// let changen = apiValues.map((obj: { fields: any; }) => 
-//   {return obj.fields.inputvalue})
-
-//   console.log(changen)
-
-//   let changens = apiValues.map((obj: { id: any; }) => 
-//   {return obj.id})
-
-//   console.log(changens)
-
-
   return (
     <div>
       <div className={styles.form}>
@@ -116,12 +115,12 @@ base('inputvalue').select({
         <label className={styles.label}>Write something between 3 and 20 letters and without special characters:</label>
         <input onInput={handleInput} value={inputValue}  className={styles.inputForm} />
         <div className={styles.errorSpan}>{displayError && <div className={styles.error}>{errorMsg}</div>} </div>
-        <button onClick={handleSubmit} className={styles.submitBtn} disabled={formReadyToSubmit}>Submit</button>
+        <button  onClick={handleSubmit} className={styles.submitBtn} disabled={formReadyToSubmit}>Submit</button>
       </div>
       <div>
         Records
-        <ul> 
-          {apiValues.slice(0).reverse().map(((obj: any) => { return <li key={obj.id}>{obj.fields.inputvalue}</li>}))}
+        <ul className={styles.list}> 
+          {apiValues.map(((obj: any) => { return <li key={obj.id}>{obj.fields.inputvalue}</li>}))}
         </ul>
       
       </div>
@@ -130,5 +129,4 @@ base('inputvalue').select({
   )
 }
 
-export default InputForm
 
