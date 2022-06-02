@@ -29,32 +29,21 @@ export const  InputForm = ( props?: InputFormProps) => {
   const [inputValue, setInputValue] = useState<string>('')
   const [errorMsg, setErrorMsg] = useState<string>('')
   const [apiValues, setApiValues] = useState<any[] | any>([]) 
-
-
-
-
+  
 
   const formReadyToSubmit = (displayError || !inputValue)
 
-
 useEffect(() => {
-
 base('inputvalue').select({
-  maxRecords: 100,
+  maxRecords: 1000,
  view: "Grid view"
 }).eachPage(function page(records, fetchNextPage) {
   setApiValues(records)
-//   records.forEach(function (record) {
-//     console.log('Retrived', record.get('inputvalue'));
-//  })
-
  fetchNextPage()
 }, function done(err) {
  if (err) {console.error(err); return}
 })
 },[])
-
-
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement> ) => {
       const specialCharacters = /[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|]+/
@@ -83,7 +72,10 @@ base('inputvalue').select({
   const handleSubmit = useCallback((e: React.MouseEvent<HTMLButtonElement> ) => {
     const createRecord = async (fields: any) => {
       const createdRecord = await table.create(fields)
-      console.log(createdRecord)
+      const newArray = [...apiValues]
+      newArray.push(createdRecord)
+      setApiValues(newArray)
+
     }
     e.preventDefault()
     if(!formReadyToSubmit) {
@@ -91,6 +83,7 @@ base('inputvalue').select({
       createRecord({
         'inputvalue': inputValue}
       )
+     
   },[formReadyToSubmit, inputValue])
 
 
@@ -107,7 +100,6 @@ base('inputvalue').select({
     setInputValue(valueToSet)
   },[])
 
-
   return (
     <div>
       <div className={styles.form}>
@@ -117,15 +109,13 @@ base('inputvalue').select({
         <div className={styles.errorSpan}>{displayError && <div className={styles.error}>{errorMsg}</div>} </div>
         <button  onClick={handleSubmit} className={styles.submitBtn} disabled={formReadyToSubmit}>Submit</button>
       </div>
-      <div>
-        Records
+      <div className={styles.airtable}>
+       <p className={styles.mark}>Leave a mark from input!</p> 
         <ul className={styles.list}> 
-          {apiValues.map(((obj: any) => { return <li key={obj.id}>{obj.fields.inputvalue}</li>}))}
+          {apiValues.map(((obj: any) => { return <li className={styles.airtableList} key={obj.id}>{obj.fields.inputvalue}</li>}))}
         </ul>
-      
       </div>
    </div>
-
   )
 }
 

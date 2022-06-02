@@ -37,11 +37,11 @@
 
 .inputForm{
   width: 90%;
-  height: 2rem;
+  height: 3rem;
   background: rgb(143, 241, 237);
   padding: 10px;
   border-radius: 5px;
-
+  font-size: 0.9em;
 }
 
 .inputForm:focus {
@@ -51,7 +51,6 @@
 .submitBtn {
   height: 25px;
   width: 100px;
-
   @media screen and (min-width: 480px){
     font-size: 1em;
     height: 45px;
@@ -70,8 +69,34 @@ text-align: center;
 height: 1.5rem;
 }
 
+.airtable {
+  margin: 2rem 0;
+}
+
 .list{
-  height: 300px;
+  height: 30rem;
   overflow: hidden;
   overflow-y: scroll;
+  background: rgba(143, 241, 237,0.2);
+  margin: 1.5rem 0;
+
+  @media  screen and  (max-width: 768px) {
+    height: 10rem;
+  }
+  
+}
+
+.mark {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: var(--fontColor);
+}
+
+.airtableList{
+  margin: 0.3rem 0 0.3rem 1.5rem;
+  font-style: italic;
+  font-size: 0.7em;
+  list-style: none; 
 }

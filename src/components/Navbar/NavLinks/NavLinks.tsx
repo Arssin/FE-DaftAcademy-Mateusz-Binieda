@@ -32,7 +32,7 @@ export  function NavLinks({toggleHamburger}:NavProps) {
               <Link onClick={toggleHamburger} to='/alert' className={styles.anchorTag}>Homework Alert</Link>
           </li>
           <li  className={styles.list}>
-              <Link onClick={toggleHamburger} to='/form' className={styles.anchorTag}>Homework Form</Link>
+              <Link onClick={toggleHamburger} to='/form' className={styles.anchorTag}>Homework Form + AirTable API</Link>
           </li>
           <li  className={styles.list}>
               <Link onClick={toggleHamburger} to='/rim' className={styles.anchorTag}>R&M Api</Link>
