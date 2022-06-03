@@ -21,7 +21,7 @@ export const  InputForm = ( props?: InputFormProps) => {
   const [displayError, setDisplayError] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>('')
   const [errorMsg, setErrorMsg] = useState<string>('')
-  const [apiValues, setApiValues] = useState<any[] | any>([]) 
+  const [apiValues, setApiValues] = useState<any>([]) 
   
 
   const formReadyToSubmit = (displayError || !inputValue)
@@ -39,6 +39,7 @@ base('inputvalue').select({
 },[])
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement> ) => {
+      // eslint-disable-next-line no-useless-escape
       const specialCharacters = /[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|]+/
       const values = event.target.value
       const inputMsgLength = event.target.value.length
@@ -63,7 +64,7 @@ base('inputvalue').select({
 
 
   const handleSubmit = useCallback((e: React.MouseEvent<HTMLButtonElement> ) => {
-    const createRecord = async (fields: any) => {
+    const createRecord = async (fields: object) => {
       const createdRecord = await table.create(fields)
       const newArray = [...apiValues]
       newArray.push(createdRecord)
@@ -97,8 +98,9 @@ base('inputvalue').select({
     <div>
       <div className={styles.form}>
         <label className={styles.title}>Task number 2</label>
-        <label className={styles.label}>Write something between 3 and 20 letters and without special characters:</label>
+        <label className={styles.label}>Write something between 3 and 20 letters and without special characters:
         <input onInput={handleInput} value={inputValue}  className={styles.inputForm} />
+        </label>
         <div className={styles.errorSpan}>{displayError && <div className={styles.error}>{errorMsg}</div>} </div>
         <button  onClick={handleSubmit} className={styles.submitBtn} disabled={formReadyToSubmit}>Submit</button>
       </div>

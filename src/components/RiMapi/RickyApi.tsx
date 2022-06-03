@@ -20,7 +20,6 @@ export function RickyApi() {
         }
         let actualData = await response.json();
          setData(actualData.map((item: { image: string; }) => item.image));
-        console.log(actualData)
         setError(null);
       } catch(err) {
         setError(err.message);
