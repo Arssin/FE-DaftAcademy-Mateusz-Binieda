@@ -1,6 +1,6 @@
 import styles from './InputForm.module.scss';
 import  {useState, useCallback, useEffect} from 'react'
-import Airtable from 'airtable'
+import Airtable, { FieldSet, Records } from 'airtable'
 
 
 interface InputFormProps {
@@ -21,7 +21,7 @@ export const  InputForm = ( props?: InputFormProps) => {
   const [displayError, setDisplayError] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>('')
   const [errorMsg, setErrorMsg] = useState<string>('')
-  const [apiValues, setApiValues] = useState<any>([]) 
+  const [apiValues, setApiValues] = useState<Records<FieldSet>>([]) 
   
 
   const formReadyToSubmit = (displayError || !inputValue)
