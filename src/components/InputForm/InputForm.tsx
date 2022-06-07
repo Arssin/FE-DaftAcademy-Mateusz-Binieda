@@ -27,15 +27,20 @@ export const  InputForm = ( props?: InputFormProps) => {
   const formReadyToSubmit = (displayError || !inputValue)
 
 useEffect(() => {
+  (async () => {
+return new Promise<void>((resolve, reject) => {
 base('inputvalue').select({
   maxRecords: 1000,
  view: "Grid view"
 }).eachPage(function page(records, fetchNextPage) {
   setApiValues(records)
  fetchNextPage()
+ resolve()
 }, function done(err) {
- if (err) {console.error(err); return}
+ if (err) {console.error(err);
+reject('Promise rejected')}
 })
+})})()
 },[])
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement> ) => {
