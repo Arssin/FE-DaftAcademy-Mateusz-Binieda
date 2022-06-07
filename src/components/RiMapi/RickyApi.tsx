@@ -8,7 +8,7 @@ export function RickyApi() {
   const [error, setError] = useState<string>();
 
   useEffect(() => {
-    const getData = async () => {
+    (async () => {
       try {
         const response = await fetch(
           `${process.env.REACT_APP_API_LINK}`
@@ -27,8 +27,8 @@ export function RickyApi() {
       } finally {
         setLoading(false);
       }  
-    }
-    getData()
+    })
+   ()
   }, [])
 
   return (
