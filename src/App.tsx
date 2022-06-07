@@ -7,6 +7,7 @@ import {Homepage} from './components/Homepage'
 import { Routes, Route } from 'react-router-dom';
 import {Contact} from './components/Contact'
 import {About} from './components/About'
+import {RickyApi} from './components/RiMapi'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/alert' element ={<ShowAlert />} />
           <Route path='/form' element = {<InputForm  defaultValue={'Hello There'}/>} />
+          <Route path='rim' element = {<RickyApi />} />
         </Routes>
       </div>
       <Footer />

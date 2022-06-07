@@ -24,8 +24,7 @@
   background-size: 300% 300%;
   width: 80%;
   box-shadow: 3px 4px 2px 2px rgb(27, 27, 27);
-  animation: gradient 4s ease infinite;
-
+ 
   &:hover {
     color: rgb(33, 46, 160);
     transform: scale(1.05)
@@ -36,17 +35,6 @@
     font-size: 1.1em;
   }
 
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
 }
 
 

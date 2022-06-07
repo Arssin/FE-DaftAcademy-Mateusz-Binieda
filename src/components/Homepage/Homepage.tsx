@@ -9,7 +9,7 @@ export function Homepage() {
           Welcome to the home page!
         </p>
         <span>
-        It is a project related to the <a href='https://www.daftacademy.pl/'rel="noreferrer" target="_blank" className={styles.link}>DaftAcademy</a> course.
+        It is a project related to the <a href='https://www.daftacademy.pl/' rel="noreferrer" target="_blank" className={styles.link}>DaftAcademy</a> course.
         <br/>
         Something's going to be here, however Charmander needs to finish his running first. </span>
       </div>
