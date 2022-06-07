@@ -5,13 +5,13 @@ export function RickyApi() {
 
   const [data, setData] = useState<null | []>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<null>(null);
+  const [error, setError] = useState<string>();
 
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await fetch(
-          `https://rickandmortyapi.com/api/character/1,30,110,90`
+          `${process.env.REACT_APP_API_LINK}`
         );
         if (!response.ok) {
           throw new Error(
@@ -20,9 +20,9 @@ export function RickyApi() {
         }
         let actualData = await response.json();
          setData(actualData.map((item: { image: string; }) => item.image));
-        setError(null);
-      } catch(err) {
-        setError(err.message);
+         setError('')
+      } catch(err)  {
+        setError((err as Error).message);
         setData(null);
       } finally {
         setLoading(false);
